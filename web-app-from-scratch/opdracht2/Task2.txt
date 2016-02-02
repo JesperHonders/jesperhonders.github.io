@@ -1,8 +1,14 @@
 Security
-The more the library is used the more there is known about certain exploits.
+Hoe vaker een libary wordt gebruikt hoe meer er bij hackers bekend is over de beveilegings problemen wat kan zorgen dat je makkelijker te breken bent.
 
 Costs
-Faster code means more money
+Libary's zijn voorgeschreven stukken code die gemakkelijk her te gebruiken zijn, waardoor er sneller een applicatie kan gemaakt worden, wat tijd scheelt dus daardoor ook geld.
 
 Support
-More people have done the same thing as you with the same code, more people are available for support
+Meer mensen gebruiken dezelfde stukken code, dus meer mensen lopen tegen de zelfde problemen aan, Hierdoor is het makkelijker om support te vinden op het internet.
+
+Cross-Browser
+Grote libraries zoals Jquery worden gemaakt om op elke browser te werken, Dit scheelt veel frustratie mocht je zelf je code willen maken die op elke browser hetzelfde werkt.
+
+Je leert geen Javascript
+Als je veel jquery gebruikt leer je alleen jquery, En geen javascript. Je zou misschien niet kunnen snappen hoe die principes werken en hoe ze het best toegepast kunnen worden.
