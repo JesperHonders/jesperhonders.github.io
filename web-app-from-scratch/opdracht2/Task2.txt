@@ -1,0 +1,8 @@
+Security
+The more the library is used the more there is known about certain exploits.
+
+Costs
+Faster code means more money
+
+Support
+More people have done the same thing as you with the same code, more people are available for support
