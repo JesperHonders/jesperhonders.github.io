@@ -10,14 +10,20 @@
  */
 
 // Variable declaration
-var SANDBOX = "SANDBOX";
-var LINEAIR = "LINEAIR";
-var GPS_AVAILABLE = 'GPS_AVAILABLE';
-var GPS_UNAVAILABLE = 'GPS_UNAVAILABLE';
-var POSITION_UPDATED = 'POSITION_UPDATED';
-var REFRESH_RATE = 1000;
-var currentPosition = currentPositionMarker = customDebugging = debugId = map = interval =intervalCounter = updateMap = false;
-var locatieRij = markerRij = [];
+(function declareVariables() {
+    'use strict';
+
+    var SANDBOX = "SANDBOX",
+        LINEAIR = "LINEAIR",
+        GPS_AVAILABLE = 'GPS_AVAILABLE',
+        GPS_UNAVAILABLE = 'GPS_UNAVAILABLE',
+        POSITION_UPDATED = 'POSITION_UPDATED',
+        REFRESH_RATE = 1000,
+        currentPosition = currentPositionMarker = customDebugging = debugId = map = interval =intervalCounter = updateMap = false,
+        locatieRij = markerRij = [];
+
+})();
+
 
 // Event functies - bron: http://www.nczonline.net/blog/2010/03/09/custom-events-in-javascript/ Copyright (c) 2010 Nicholas C. Zakas. All rights reserved. MIT License
 // Gebruik: ET.addListener('foo', handleEvent); ET.fire('event_name'); ET.removeListener('foo', handleEvent);
