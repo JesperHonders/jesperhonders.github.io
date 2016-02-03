@@ -13,6 +13,9 @@ Grote libraries zoals Jquery worden gemaakt om op elke browser te werken, Dit sc
 Je leert geen Javascript
 Als je veel jquery gebruikt leer je alleen jquery, En geen javascript. Je zou misschien niet kunnen snappen hoe die principes werken en hoe ze het best toegepast kunnen worden.
 
+Je gebruikt niet alle functies
+Vaak gebruik je maar een aantal functies. De rest is redudante data die mee gezonden wordt.
+
 -------------------------------------------------------------------------------------------------------------------------
 
 Single Pager.

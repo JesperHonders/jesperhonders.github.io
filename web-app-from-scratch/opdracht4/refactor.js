@@ -10,18 +10,83 @@
  */
 
 // Variable declaration
-(function declareVariables() {
+(function() {
     'use strict';
 
-    var SANDBOX = "SANDBOX",
-        LINEAIR = "LINEAIR",
-        GPS_AVAILABLE = 'GPS_AVAILABLE',
-        GPS_UNAVAILABLE = 'GPS_UNAVAILABLE',
-        POSITION_UPDATED = 'POSITION_UPDATED',
-        REFRESH_RATE = 1000,
-        currentPosition = currentPositionMarker = customDebugging = debugId = map = interval =intervalCounter = updateMap = false,
-        locatieRij = markerRij = [];
+    var Geolocation = {
+        SANDBOX : "SANDBOX",
+        LINEAIR : "LINEAIR",
+        GPS_AVAILABLE : 'GPS_AVAILABLE',
+        GPS_UNAVAILABLE : 'GPS_UNAVAILABLE',
+        POSITION_UPDATED : 'POSITION_UPDATED',
+        REFRESH_RATE : 1000,
+        currentPosition : currentPositionMarker = customDebugging = debugId = map = interval =intervalCounter = updateMap = false,
+        locatieRij : markerRij = [],
+    }
+    
+    function init(){
+        debug_message("Controleer of GPS beschikbaar is...");
 
+        ET.addListener(GPS_AVAILABLE, _start_interval);
+        ET.addListener(GPS_UNAVAILABLE, function(){debug_message('GPS is niet beschikbaar.')});
+
+        (geo_position_js.init())?ET.fire(GPS_AVAILABLE):ET.fire(GPS_UNAVAILABLE);
+}
+
+    // Start een interval welke op basis van REFRESH_RATE de positie updated
+    function start_interval(event){
+        debug_message("GPS is beschikbaar, vraag positie.");
+        _update_position();
+        interval = self.setInterval(_update_position, REFRESH_RATE);
+        ET.addListener(POSITION_UPDATED, _check_locations);
+    }
+
+    // Vraag de huidige positie aan geo.js, stel een callback in voor het resultaat
+    function update_position(){
+        intervalCounter++;
+        geo_position_js.getCurrentPosition(_set_position, _geo_error_handler, {enableHighAccuracy:true});
+    }
+
+    // Callback functie voor het instellen van de huidige positie, vuurt een event af
+    function set_position(position){
+        currentPosition = position;
+        ET.fire("POSITION_UPDATED");
+        debug_message(intervalCounter+" positie lat:"+position.coords.latitude+" long:"+position.coords.longitude);
+    }
+    
+    function _check_locations(event){
+    // Liefst buiten google maps om... maar helaas, ze hebben alle coole functies
+        for (var i = 0; i < locaties.length; i++) {
+            var locatie = {coords:{latitude: locaties[i][3],longitude: locaties[i][4]}};
+
+            if(_calculate_distance(locatie, currentPosition)<locaties[i][2]){
+
+                // Controle of we NU op die locatie zijn, zo niet gaan we naar de betreffende page
+                if(window.location!=locaties[i][1] && localStorage[locaties[i][0]]=="false"){
+                    // Probeer local storage, als die bestaat incrementeer de locatie
+                    try {
+                        (localStorage[locaties[i][0]]=="false")?localStorage[locaties[i][0]]=1:localStorage[locaties[i][0]]++;
+                    } catch(error) {
+                        debug_message("Localstorage kan niet aangesproken worden: "+error);
+                    }
+
+    // TODO: Animeer de betreffende marker
+
+                    window.location = locaties[i][1];
+                    debug_message("Speler is binnen een straal van "+ locaties[i][2] +" meter van "+locaties[i][0]);
+                }
+            }
+        }
+    }
+
+    // Bereken het verchil in meters tussen twee punten
+    function _calculate_distance(p1, p2){
+        var pos1 = new google.maps.LatLng(p1.coords.latitude, p1.coords.longitude);
+        var pos2 = new google.maps.LatLng(p2.coords.latitude, p2.coords.longitude);
+        return Math.round(google.maps.geometry.spherical.computeDistanceBetween(pos1, pos2), 0);
+    }
+
+    
 })();
 
 
@@ -32,68 +97,8 @@ EventTarget.prototype={constructor:EventTarget,addListener:function(a,c){"undefi
     this._listeners[a],d=0,e=b.length;d<e;d++)if(b[d]===c){b.splice(d,1);break}}}; var ET = new EventTarget();
 
 // Test of GPS beschikbaar is (via geo.js) en vuur een event af
-function init(){
-    debug_message("Controleer of GPS beschikbaar is...");
-
-    ET.addListener(GPS_AVAILABLE, _start_interval);
-    ET.addListener(GPS_UNAVAILABLE, function(){debug_message('GPS is niet beschikbaar.')});
-
-    (geo_position_js.init())?ET.fire(GPS_AVAILABLE):ET.fire(GPS_UNAVAILABLE);
-}
-
-// Start een interval welke op basis van REFRESH_RATE de positie updated
-function _start_interval(event){
-    debug_message("GPS is beschikbaar, vraag positie.");
-    _update_position();
-    interval = self.setInterval(_update_position, REFRESH_RATE);
-    ET.addListener(POSITION_UPDATED, _check_locations);
-}
-
-// Vraag de huidige positie aan geo.js, stel een callback in voor het resultaat
-function _update_position(){
-    intervalCounter++;
-    geo_position_js.getCurrentPosition(_set_position, _geo_error_handler, {enableHighAccuracy:true});
-}
-
-// Callback functie voor het instellen van de huidige positie, vuurt een event af
-function _set_position(position){
-    currentPosition = position;
-    ET.fire("POSITION_UPDATED");
-    debug_message(intervalCounter+" positie lat:"+position.coords.latitude+" long:"+position.coords.longitude);
-}
 
 // Controleer de locaties en verwijs naar een andere pagina als we op een locatie zijn
-function _check_locations(event){
-    // Liefst buiten google maps om... maar helaas, ze hebben alle coole functies
-    for (var i = 0; i < locaties.length; i++) {
-        var locatie = {coords:{latitude: locaties[i][3],longitude: locaties[i][4]}};
-
-        if(_calculate_distance(locatie, currentPosition)<locaties[i][2]){
-
-            // Controle of we NU op die locatie zijn, zo niet gaan we naar de betreffende page
-            if(window.location!=locaties[i][1] && localStorage[locaties[i][0]]=="false"){
-                // Probeer local storage, als die bestaat incrementeer de locatie
-                try {
-                    (localStorage[locaties[i][0]]=="false")?localStorage[locaties[i][0]]=1:localStorage[locaties[i][0]]++;
-                } catch(error) {
-                    debug_message("Localstorage kan niet aangesproken worden: "+error);
-                }
-
-// TODO: Animeer de betreffende marker
-
-                window.location = locaties[i][1];
-                debug_message("Speler is binnen een straal van "+ locaties[i][2] +" meter van "+locaties[i][0]);
-            }
-        }
-    }
-}
-
-// Bereken het verchil in meters tussen twee punten
-function _calculate_distance(p1, p2){
-    var pos1 = new google.maps.LatLng(p1.coords.latitude, p1.coords.longitude);
-    var pos2 = new google.maps.LatLng(p2.coords.latitude, p2.coords.longitude);
-    return Math.round(google.maps.geometry.spherical.computeDistanceBetween(pos1, pos2), 0);
-}
 
 
 // GOOGLE MAPS FUNCTIES
