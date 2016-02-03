@@ -10,7 +10,7 @@
  */
 
 // Variable declaration
-(function() {
+(function () {
     'use strict';
 
     var Geolocation = {
@@ -20,40 +20,50 @@
         GPS_UNAVAILABLE : 'GPS_UNAVAILABLE',
         POSITION_UPDATED : 'POSITION_UPDATED',
         REFRESH_RATE : 1000,
-        currentPosition : currentPositionMarker = customDebugging = debugId = map = interval =intervalCounter = updateMap = false,
-        locatieRij : markerRij = [],
-        
-        init: function(){
-        debug_message("Controleer of GPS beschikbaar is...");
-
-        ET.addListener(GPS_AVAILABLE, this.start_interval);
-        ET.addListener(GPS_UNAVAILABLE, function(){debug_message('GPS is niet beschikbaar.')});
-
-        (geo_position_js.init())?ET.fire(GPS_AVAILABLE):ET.fire(GPS_UNAVAILABLE);
+        locationRow: [],
+        markerRow: [],
+        currentPosition : {
+            currentPositionMarker: false,
+            customDebugging: false,
+            debugId: false,
+            map: false,
+            interval: false,
+            intervalCounter: false,
+            updateMap: false
         },
+        
+        
+        init: function () {
+            debug_message("Controleer of GPS beschikbaar is...");
 
-        // Start een interval welke op basis van REFRESH_RATE de positie updated
-        start_interval: function(event){
-            debug_message("GPS is beschikbaar, vraag positie.");
-            this.update_position();
-            interval = self.setInterval(this.update_position, REFRESH_RATE);
-            ET.addListener(POSITION_UPDATED, _check_locations);
+            ET.addListener(GPS_AVAILABLE, this.start_interval);
+            ET.addListener(GPS_UNAVAILABLE, function () {debug_message('GPS is niet beschikbaar.');});
+
+            (geo_position_js.init())?ET.fire(GPS_AVAILABLE):ET.fire(GPS_UNAVAILABLE);
+            },
+
+            // Start een interval welke op basis van REFRESH_RATE de positie updated
+            start_interval: function(event){
+                debug_message("GPS is beschikbaar, vraag positie.");
+                this.update_position();
+                interval = self.setInterval(this.update_position, REFRESH_RATE);
+                ET.addListener(POSITION_UPDATED, _check_locations);
         },
 
         // Vraag de huidige positie aan geo.js, stel een callback in voor het resultaat
-        update_position: function(){
+        update_position: function () {
             intervalCounter++;
             geo_position_js.getCurrentPosition(this.set_position, this.geo_error_handler, {enableHighAccuracy:true});
         },
 
         // Callback functie voor het instellen van de huidige positie, vuurt een event af
-        set_position: function(position){
+        set_position: function (position) {
             currentPosition = position;
             ET.fire("POSITION_UPDATED");
             debug_message(intervalCounter+" positie lat:"+position.coords.latitude+" long:"+position.coords.longitude);
         },
     
-        check_locations: function(event){
+        check_locations: function (event) {
         // Liefst buiten google maps om... maar helaas, ze hebben alle coole functies
             for (var i = 0; i < locaties.length; i++) {
                 var locatie = {coords:{latitude: locaties[i][3],longitude: locaties[i][4]}};
@@ -79,14 +89,14 @@
         },
 
     // Bereken het verchil in meters tussen twee punten
-    calculate_distance: function(p1, p2){
+    calculate_distance: function (p1, p2) {
         var pos1 = new google.maps.LatLng(p1.coords.latitude, p1.coords.longitude);
         var pos2 = new google.maps.LatLng(p2.coords.latitude, p2.coords.longitude);
         return Math.round(google.maps.geometry.spherical.computeDistanceBetween(pos1, pos2), 0);
     },
     
     // Update de positie van de gebruiker op de kaart
-    update_positie: function(event){
+    update_positie: function (event) {
         // use currentPosition to center the map
         var newPos = new google.maps.LatLng(currentPosition.coords.latitude, currentPosition.coords.longitude);
         map.setCenter(newPos);
@@ -124,7 +134,7 @@ EventTarget.prototype={constructor:EventTarget,addListener:function(a,c){"undefi
  *  @param canvasID:string - het id van het HTML element waar de
  *      kaart in ge-rendered moet worden, <div> of <canvas>
  */
-function generate_map(myOptions, canvasId){
+function generate_map (myOptions, canvasId) {
 // TODO: Kan ik hier asynchroon nog de google maps api aanroepen? dit scheelt calls
     debug_message("Genereer een Google Maps kaart en toon deze in #"+canvasId)
     map = new google.maps.Map(document.getElementById(canvasId), myOptions);
@@ -144,16 +154,16 @@ function generate_map(myOptions, canvasId){
         var markerLatLng = new google.maps.LatLng(locaties[i][3], locaties[i][4]);
         routeList.push(markerLatLng);
 
-        markerRij[i] = {};
+        markerRow[i] = {};
         for (var attr in locatieMarker) {
-            markerRij[i][attr] = locatieMarker[attr];
+            markerRow[i][attr] = locatieMarker[attr];
         }
-        markerRij[i].scale = locaties[i][2]/3;
+        markerRow[i].scale = locaties[i][2]/3;
 
         var marker = new google.maps.Marker({
             position: markerLatLng,
             map: map,
-            icon: markerRij[i],
+            icon: markerRow[i],
             title: locaties[i][0]
         });
     }
