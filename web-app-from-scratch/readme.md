@@ -1,3 +1,5 @@
+#opdracth 2
+
 Security
 Hoe vaker een libary wordt gebruikt hoe meer er bij hackers bekend is over de beveilegings problemen wat kan zorgen dat je makkelijker te breken bent.
 
@@ -18,7 +20,7 @@ Vaak gebruik je maar een aantal functies. De rest is redudante data die mee gezo
 
 -------------------------------------------------------------------------------------------------------------------------
 
-Single Pager.
+#opdracht 3
 
 
 Sterke Focus.
