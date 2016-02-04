@@ -1,15 +1,33 @@
+@font-face {
+    font-family: Ampersand;
+    src: local('Baskerville'),
+         local('Goudy Old Style'),
+         local('Palatino'),
+         local('Book Antiqua');
+    unicode-range: U+26;
+}
+
 body {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     margin: 0px;
-    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
     background: #D7DBD7;
+    font-family: sans-serif;
 }
 
 
 /* Header */
 
 body > header {
-    order: -2;
+    -webkit-box-ordinal-group: -1;
+    -webkit-order: -2;
+        -ms-flex-order: -2;
+            order: -2;
     background: #333;
     width: 20%;
     color: white;
@@ -19,8 +37,8 @@ body > header {
 
 body > header > h1 {
     text-align: center;
-    font-family: sans-serif;
     color: white;
+    font-family: Ampersand;
 }
 
 body > header > p {
@@ -38,8 +56,19 @@ body > header > nav {
 }
 
 body > header > nav > ul {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
     padding: 0;
 }
 
@@ -66,7 +95,10 @@ body header nav ul li svg{
 
 body > main {
     padding: 2em;
-    order:-1;
+    -webkit-box-ordinal-group:0;
+    -webkit-order:-1;
+        -ms-flex-order:-1;
+            order:-1;
     width: 70%;
 }
 
@@ -79,7 +111,6 @@ main > article {
 
 main > article > header > h1 {
     font-size: 3em;
-    font-family: sans-serif;
     margin: 0.2em 0em;
 }
 
@@ -88,10 +119,20 @@ main > article > header > h1 > span {
 }
 
 #photo-albums {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    order: 2;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-box-ordinal-group: 3;
+    -webkit-order: 2;
+        -ms-flex-order: 2;
+            order: 2;
 }
 
 #photo-albums header {
@@ -101,12 +142,19 @@ main > article > header > h1 > span {
 #photo-albums > figure {
     margin: 0px;
     padding: 0px;
-    align-items: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+                -ms-grid-row-align: center;
+            align-items: center;
 }
 
 #photo-albums > figure img {
-    width: 20em;
-    order: 1;
+    max-width: 18em;
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+        -ms-flex-order: 1;
+            order: 1;
 }
 
 #photo-albums > figure svg {
@@ -116,8 +164,13 @@ main > article > header > h1 > span {
 
 body > footer {
     background: #333;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-around;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
     color: #777;
     width: 100%;
     text-decoration: none;
@@ -146,11 +199,18 @@ body ul {
     }
     
     body > header > nav > ul {
-    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+        margin: 0 auto;
+        display: block;
     }
     
     body > main {
         width: 100%;
+        padding: 0px;
     }
     
     main > article {
@@ -159,7 +219,17 @@ body ul {
     
     
     body > footer {
-    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
     }
 }
 
+@media screen and (max-width: 550px) {
+    
+    body > footer {
+        display: block;
+        text-align: center;
+    }
+    
+}
