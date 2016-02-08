@@ -2,6 +2,10 @@ body {
     margin: 0;
 }
 
+.none {
+    display: none;
+}
+
 #home h1 {
     color: #333;
     text-align: center;

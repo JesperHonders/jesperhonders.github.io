@@ -1,41 +1,38 @@
-(function(){
-	'use strict';
+(function () {
+    'use strict';
 
-	var app = {
-		init:function() {
-			routes.init();
+    var app = {
+        init: function () {
+            routes.init();
             console.log("initialized")
-		}
-	};
+        }
+    };
+    var select = {
+        one: function (selector) {
+            return document.querySelector(selector);
+        },
+        all: function (selector) {
+            return document.querySelectorAll(selector);
+        }
+    }
 
-	var routes = {
-		init:function() {
-			window.addEventListener("hashchange", function(HashChangeEvent){
-                
-				var hashLocationNew = HashChangeEvent.newURL.search("#");
-                var hashLocationOld = HashChangeEvent.oldURL.search("#");
-                var newHash = HashChangeEvent.newURL.substr(hashLocationNew);
-                var oldHash = HashChangeEvent.oldURL.substr(hashLocationOld);
-                
-                sections.toggle(newHash, oldHash);
-			}, false);			
-		}
-	};
+    var routes = {
+        init: function () {
+            window.addEventListener("hashchange", function (HashChangeEvent) {
+                var hash = location.hash
+                sections.toggle(hash);
+            }, false);
+        }
+    };
 
-	var sections = {
-		toggle: function (newHash, oldHash) {
-			if(newHash === '#list') {
-                document.getElementById("list").style.display = "block";
-                document.getElementById("home").style.display = "none";
-			}
-            else if(newHash === '#start'){
-                document.getElementById("home").style.display = "block";
-                document.getElementById("list").style.display = "none";
+    var sections = {
+        toggle: function (hash) {
+            var content = select.all('.content')
+            for (var i = 0; i < content.length; i++) {
+                content[i].classList.add("none")
             }
-            else {
-
-			}
-		}
-	}
-	app.init();
+            select.one(hash).classList.remove("none")
+        }
+    }
+    app.init();
 }());
