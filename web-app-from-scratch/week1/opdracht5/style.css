@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+}
+
+.none {
+    display: none;
+}
+
+#home h1 {
+    color: #333;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+#list ul {
+    list-style: none;
+    padding: 0px
+}
+
+#list ul li {
+    text-align: center;
+    padding: 1em;
+    border-top: 1px solid #555;
+    border-bottom: 1px solid #555;
+    color: #333;
+    font-family: sans-serif;
+}
+
+nav ul {
+    padding: 0px;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 3em;
+    background: #333;
+}
+
+nav li {
+    width: 100%;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-family: sans-serif;
+}
