@@ -17,6 +17,7 @@
 	function handleResponse(xmlResponse) {
 		xmlResponse = xmlhttp.responseXML;
 		var root = xmlResponse.documentElement;
+        console.log(root);
 		var weatherstations = root.getElementsByTagName('weerstation');
 		for(var i = 0; i < weatherstations.length; i++) {
 			var name = weatherstations[i].children.item(1).textContent;

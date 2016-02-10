@@ -1,0 +1,42 @@
+#overlay:target{
+    opacity: 1;
+    transition: opacity 1s ease-in;
+    display: block;
+}
+
+#:target{
+    display: none;
+}
+
+body {
+    background-image: url(http://www.planwallpaper.com/static/images/Nature-Background-Wallpapers-8_gxwmqmj.jpg);
+    height: 100vh;
+    display: flex;
+}
+
+#container {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+#container > a > span {
+    padding: 10px 20px;
+    border: 1px solid #333;
+    border-radius: 5px
+}
+
+#overlay {
+    display: none;
+    position: absolute;
+    width: min-content;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: white;
+    padding: 10px 20px;
+    opacity: 0;
+    box-shadow: 0 0 0 999px rgba(0,0,0,.8);
+    left: 40%;
+    top: 2em;
+    
+}
