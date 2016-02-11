@@ -22,15 +22,31 @@
         </nav>
     </header>
 	
-    <section id="home" class="content">
+    <section id="home" class="content none">
         <h1>Welkom bij deze app</h1>
     </section>
 
-    <section id="list" class="content">
-        
+    <section id="list" class="list-container none">
+        <a data-bind="link">
+            <article>
+                <h1 data-bind="name"></h1>
+                <div data-bind="temp"></div>
+                <div data-bind="humid"></div>
+                <div data-bind="pressure"></div>
+                <span data-bind="stationID"></span>
+                <img data-bind="img"/>
+            </article>
+        </a>
     </section>
-	
-    <script src="routie.js"></script>
-    <script src="app.js"></script>
+    
+    <section id="detail" class="none">
+        <h1>Detail pagina!!</h1>
+    
+    </section>
+    <script src="js/jsontoxml.js"></script>
+	<script src="js/microajax.minified.js"></script>
+    <script src="js/routie.js"></script>
+    <script src="js/transparency.min.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

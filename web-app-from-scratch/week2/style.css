@@ -46,3 +46,20 @@ nav a {
     text-decoration: none;
     font-family: sans-serif;
 }
+
+#list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+#list > a> article {
+    width: 20em;
+    height: 10em;
+    background-color: #333;
+    margin: 1em;
+    padding: 1em;
+    text-align: center;
+    color: white;
+}

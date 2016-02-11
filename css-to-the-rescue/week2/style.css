@@ -1,4 +1,4 @@
-#overlay:target{
+#overlay:target {
     opacity: 1;
     transition: opacity 1s ease-in;
     display: block;
