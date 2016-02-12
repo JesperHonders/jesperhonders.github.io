@@ -10,7 +10,7 @@
 		if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			handleResponse(xmlhttp.response);
 		}
-	}
+	};
 	
 	
 	xmlhttp.open('GET', 'http://xml.buienradar.nl/', true);
@@ -75,7 +75,7 @@
 				   	sections.toggle('#home')
 				},
                 ':id' : function (stationid) {
-                    
+                    alert(stationid);
                 }
 			})
         }
