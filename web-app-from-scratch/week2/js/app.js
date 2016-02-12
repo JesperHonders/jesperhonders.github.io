@@ -4,7 +4,6 @@
     
 	
 	var xmlhttp = new XMLHttpRequest();
-	// GLOBAL VARIABLE. COULD BE RISKY, BUT LOOKS FUNCTIONAL HERE. (EMIEL)
 
 	
 	xmlhttp.onreadystatechange = function() {
@@ -17,45 +16,6 @@
 	xmlhttp.open('GET', 'http://xml.buienradar.nl/', true);
 	xmlhttp.send();
 	
-	// PUT THIS WHOLE FUNCTION IN AN OBJECT WITH METHODS, LIKE SO: (EMIEL) 
-	/*
-	var api = {
-		handleResponse: function (xmlResponse) {
-			xmlResponse = xmlhttp.responseXML;
-			var root = xmlResponse.documentElement;
-			var weatherstations = root.getElementsByTagName('weerstation');
-        		var stationArray = [];
-        		
-        		for(var i = 0; i < weatherstations.length; i++) {
-        			var weatherstation = {
-		                    name: weatherstations[i].children.item(1).textContent,
-		                    temp: "Temperatuur: " + weatherstations[i].children.item(6).textContent,
-		                    humid: weatherstations[i].children.item(5).textContent + "% Luchtvochtigheid",
-		                    pressure: weatherstations[i].children.item(11).textContent + " Bar luchtdruk",
-		                    stationID: weatherstations[i].children.item(0).textContent
-                		};
-                		stationArray.push(weatherstation);
-        		}
-        		
-        		var directives = {
-		            link: {
-			                href: function(params) {
-			                    return "#" + this.stationID;
-			                }
-            			}
-        		};
-        		
-        		Transparency.render(document.getElementById('list'), stationArray, directives);
-        	}
-	};
-        */
-        
-        // MIND YOUR INDENTATION (EMIEL)
-	Transparency.render(document.getElementById('list'), stationArray, directives);
-		}
-	}
-	
-	// THIS FUNCTION BECOMES THE API.HANDLERESPONSE (EMIEL)
 	function handleResponse(xmlResponse) {
         
 		xmlResponse = xmlhttp.responseXML;
@@ -78,8 +38,7 @@
             
             stationArray.push(weatherstation);
 		}
-		
-        // GOOD USAGE OF DIRECTIVES :) (EMIEL)
+        
         var directives = {
             link: {
                 href: function(params) {
@@ -87,9 +46,7 @@
                 }
             }
         };
-        
-        // MIND YOUR INDENTATION (EMIEL)
-	Transparency.render(document.getElementById('list'), stationArray, directives);
+		Transparency.render(document.getElementById('list'), stationArray, directives);
 	}
     
 
@@ -102,8 +59,6 @@
     var select = {
         one: function (selector) {
             return document.querySelector(selector);
-            // CALL THE API HERE FOR THE PAGE YOU NEED
-            // api.handleResponse(xmlResponse)
         },
         all: function (selector) {
             return document.querySelectorAll(selector);
