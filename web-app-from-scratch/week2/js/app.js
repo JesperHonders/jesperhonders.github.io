@@ -9,6 +9,7 @@
 	xmlhttp.onreadystatechange = function() {
 		if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			handleResponse(xmlhttp.response);
+			handleList(xmlhttp.response);
 		}
 	};
 	
@@ -16,11 +17,24 @@
 	xmlhttp.open('GET', 'http://xml.buienradar.nl/', true);
 	xmlhttp.send();
 	
+	
+	function handleList(xmlResponse) {
+		var stationId = window.location.hash;
+		console.log(stationId)
+		xmlResponse = xmlhttp.responseXML;
+		var root = xmlResponse.documentElement;
+		console.log(root);
+		
+		var weatherstation = document.getElementById(stationId)
+		console.log(weatherstation);
+	
+		
+	}
+	
 	function handleResponse(xmlResponse) {
         
 		xmlResponse = xmlhttp.responseXML;
 		var root = xmlResponse.documentElement;
-        console.log(root);
 		var weatherstations = root.getElementsByTagName('weerstation');
         var stationArray = [];
         
@@ -66,7 +80,7 @@
     }
 
     var routes = {
-        init: function () {
+        init: function (xmlhttp) {
 			routie({
 				'list': function() {
 					sections.toggle('#list')
@@ -75,7 +89,8 @@
 				   	sections.toggle('#home')
 				},
                 ':id' : function (stationid) {
-                    alert(stationid);
+                    alert("Station id: "+stationid+ " - Data : "+ this.params.id);
+					console.log(this)
                 }
 			})
         }
