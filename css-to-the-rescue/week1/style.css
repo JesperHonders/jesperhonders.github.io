@@ -157,6 +157,7 @@ main > article > header > h1 > span {
 #profile-picture > [role="button"]{
 	background: #333;
 	padding:  2px 20px;
+	border-radius: 1em;
 	color: white;
 	margin-bottom: 3em;;
 }
