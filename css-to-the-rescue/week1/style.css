@@ -135,6 +135,47 @@ main > article > header > h1 > span {
             order: 2;
 }
 
+#profile-picture:target {
+	display: block;
+}
+
+#profile-picture {
+	position: absolute;
+	top: 10%;
+	background: white;
+	border: 1px solid #333;
+	display: none;
+	text-align: center;
+	width: 80vh;
+	left: 0px;
+	right: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	box-shadow: 0 0 0 999px rgba(0,0,0,.8);
+}
+
+#profile-picture > [role="button"]{
+	background: #333;
+	padding:  2px 20px;
+	color: white;
+	margin-bottom: 3em;;
+}
+
+#profile-picture img {
+	max-width: 10em;
+	border-radius: 50%;
+}
+
+.filter-effects {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center
+}
+
+.filter-effects header {
+	align-self: center;
+}
+
 #photo-albums header {
     width: 100%;
 }
