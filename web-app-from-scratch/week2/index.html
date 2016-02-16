@@ -21,26 +21,27 @@
             </ul>
         </nav>
     </header>
+    
+    <section id="loader">
+        <img src="img/loader.gif">
+    </section>
 	
     <section id="home" class="content none">
         <h1>Welkom bij deze app</h1>
     </section>
 
-    <section id="list" class="list-container none">
+    <section id="list" class="content list-container none">
         <a id="hyper" data-bind="link">
             <article>
                 <h1 data-bind="name"></h1>
-                <div data-bind="temp"></div>
-                <div data-bind="humid"></div>
-                <div data-bind="pressure"></div>
-                <span data-bind="stationID"></span>
-                <img data-bind="img"/>
+                <span data-bind="id"></span>
             </article>
         </a>
     </section>
     
-    <section id="detail" class="none">
-        <h1>Detail pagina!!</h1>
+    <section id="detail" class="content none">
+        <h1 data-bind="stationname"></h1>
+        <div data-bind="stationtemp"></div>
     
     </section>
     <script src="js/jsontoxml.js"></script>
