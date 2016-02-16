@@ -74,7 +74,7 @@
                 var data = JSON.parse(resp);
                 var detailStation = {
                     stationname: "Station Name: " + data.station.name,
-                    stationtemp: "Temp station: " + (data.last.main.temp - 273.15)
+                    stationtemp: "Temperature station in C: " + (data.last.main.temp - 273.15)
                 }
                 Transparency.render(document.getElementById('detail'), detailStation);
             });
@@ -84,12 +84,12 @@
                 var mc = new Hammer(hitElement);
                 mc.on("swipeleft", function(ev) {
                     var newId = parseInt(window.location.hash.substring(1))
-                    window.location.hash = (newId+1);
+                    window.location.hash = (newId+10);
                     alert(newId);
                 });
                 mc.on("swiperight", function(ev) {
                                 var newId = parseInt(window.location.hash.substring(1))
-                                window.location.hash = (newId-1);
+                                window.location.hash = (newId-10);
                                 alert(newId);
                             });
     app.init();

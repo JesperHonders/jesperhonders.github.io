@@ -17,6 +17,10 @@ body {
     padding: 0px
 }
 
+#list {
+    transition: sectionUp 3s;
+}
+
 #list ul li {
     text-align: center;
     padding: 1em;
@@ -66,4 +70,10 @@ nav a {
 
 #loader {
     display: none;
+    transition: sectionUp 1s;
+}
+
+@keyframes sectionUp{
+    from {transform: opacity(0)}
+    to {transform: opacity(1)}
 }
