@@ -83,9 +83,14 @@
      var hitElement = document.getElementById('detail');
                 var mc = new Hammer(hitElement);
                 mc.on("swipeleft", function(ev) {
-                    var newId = (window.location.hash+1)
-                    window.location.hash = '#'+newId;
-                    alert("Hash changed");
+                    var newId = parseInt(window.location.hash.substring(1))
+                    window.location.hash = (newId+1);
+                    alert(newId);
                 });
+                mc.on("swiperight", function(ev) {
+                                var newId = parseInt(window.location.hash.substring(1))
+                                window.location.hash = (newId-1);
+                                alert(newId);
+                            });
     app.init();
 }());
