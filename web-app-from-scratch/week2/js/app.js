@@ -84,7 +84,8 @@
                 var mc = new Hammer(hitElement);
                 mc.on("swipeleft", function(ev) {
                     var newId = (stationid+1)
-                    api.detailStation(newId)
+                    window.location.hash = '#'+newId;
+                    alert("Hash changed");
                 });
     app.init();
 }());
