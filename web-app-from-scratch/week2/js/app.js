@@ -80,10 +80,10 @@
             });
         }
     }
-    var hitElement = document.getElementById('detail');
+     var hitElement = document.getElementById('detail');
                 var mc = new Hammer(hitElement);
-                ms.on("swipeleft" function(){
-                    alert("Swipe!");
-                })
+                mc.on("swipeleft", function(ev) {
+                    alert("Swipe!")
+                });
     app.init();
 }());
