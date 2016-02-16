@@ -83,7 +83,7 @@
      var hitElement = document.getElementById('detail');
                 var mc = new Hammer(hitElement);
                 mc.on("swipeleft", function(ev) {
-                    var newId = (stationid+1)
+                    var newId = (window.location.hash+1)
                     window.location.hash = '#'+newId;
                     alert("Hash changed");
                 });
