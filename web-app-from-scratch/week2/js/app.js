@@ -83,7 +83,8 @@
      var hitElement = document.getElementById('detail');
                 var mc = new Hammer(hitElement);
                 mc.on("swipeleft", function(ev) {
-                    alert("Swipe!")
+                    var newId = (stationid+1)
+                    api.detailStation(newId)
                 });
     app.init();
 }());
