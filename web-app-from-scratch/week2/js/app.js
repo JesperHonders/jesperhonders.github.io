@@ -48,7 +48,6 @@
             document.getElementById('loader').style.display = 'block';
             microAjax("http://api.openweathermap.org/data/2.5/box/station?cluster=no&cnt=200&format=json&bbox=8.87,49.07,65.21,61.26,6&APPID=c680ce8bf66f2607453af41493091874", function(resp) {
                 document.getElementById('loader').style.display = 'none';
-                sections.toggle('#list')
                 var data = JSON.parse(resp);
                 var stationArray = [];
                 for (var i = 0; i < data.list.length; i++) {
@@ -66,6 +65,7 @@
                     stationArray.push(weatherstation);
                 }
                 Transparency.render(document.getElementById('list'), stationArray, directives);
+                sections.toggle('#list')
             });
         },
 
@@ -80,5 +80,10 @@
             });
         }
     }
+    var hitElement = document.getElementById('detail');
+                var mc = new Hammer(hitElement);
+                ms.on("swipeleft" function(){
+                    alert("Swipe!");
+                })
     app.init();
 }());
