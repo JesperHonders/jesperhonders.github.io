@@ -1,0 +1,14 @@
+body {
+    display: flex;
+}
+
+header {
+    order: -1;
+}
+
+header nav {}
+
+header > nav > img {
+    width: 50px;
+    display
+}
