@@ -56,6 +56,7 @@ nav a {
     flex-wrap: wrap;
     justify-content: space-around;
     align-content: space-around;
+	animation: scaleIn 1s;
 }
 
 #list > a> article {
@@ -68,12 +69,16 @@ nav a {
     color: white;
 }
 
+#detail {
+	animation: scaleIn 1s;
+}
+
 #loader {
     display: none;
     transition: sectionUp 1s;
 }
 
-@keyframes sectionUp{
-    from {transform: opacity(0)}
-    to {transform: opacity(1)}
+@keyframes scaleIn{
+    from {transform: scale(0)}
+    to {transform: scale(1)}
 }
