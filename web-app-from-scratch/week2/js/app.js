@@ -85,12 +85,10 @@
                 mc.on("swipeleft", function(ev) {
                     var newId = parseInt(window.location.hash.substring(1))
                     window.location.hash = (newId+10);
-                    alert(newId);
                 });
                 mc.on("swiperight", function(ev) {
                                 var newId = parseInt(window.location.hash.substring(1))
                                 window.location.hash = (newId-10);
-                                alert(newId);
                             });
     app.init();
 }());
