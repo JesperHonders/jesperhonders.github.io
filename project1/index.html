@@ -1,0 +1,37 @@
+<html>
+
+<head>
+	<title>Funda Deluxe</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+	
+	<header>
+		<form id="searchForm">
+			
+			<input id="search"><input id="searchButton" type="button" value="Zoek">
+		</form>
+		</header>
+	
+	<main id="SearchResults">
+		
+		<section class="result">
+			<h1 data-bind="adres"></h1>
+			<strong data-bind="place"></strong>
+			<ul>
+				<li data-bind="arooms"></li>
+				<li data-bind="since"></li>
+				<li data-bind="price"></li>
+			</ul>
+			<a>Bekijk</a>
+		</section>
+		
+	</main>
+
+
+	<script src="static/microajax.js"></script>
+	<script src="static/transparency.min.js"></script>
+	<script src="static/app.js"></script>
+</body>
+</html>
