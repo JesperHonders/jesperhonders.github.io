@@ -35,7 +35,7 @@
 		
 		
 		detailObject: function() {
-			microAjax("http://funda.kyrandia.nl/feeds/Aanbod.svc/json/detail/e2d60e885b8742d4b0648300e3703bd7/koop/"+objectId+"/", function (resp) {
+			microAjax("http://funda.kyrandia.nl/feeds/Aanbod.svc/json/detail/e2d60e885b8742d4b0648300e3703bd7/koop/"+objectId+"/"), function (resp) {
 				
 			}
 		}
