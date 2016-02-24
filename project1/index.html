@@ -17,19 +17,16 @@
 	<main id="SearchResults" class="content none">
 		
 		<section class="result">
+			<img data-bind="resultimage">
 			<h1 data-bind="adres"></h1>
 			<strong data-bind="place"></strong>
-			<ul>
-				<li data-bind="arooms"></li>
-				<li data-bind="since"></li>
-				<li data-bind="price"></li>
-			</ul>
 			<a data-bind="link">Bekijk</a>
 		</section>
 		
 	</main>
 	
 	<main id="DetailResult" class="content none">
+		<button id="backButton">Back</button>
 		<section>
 			<h1 data-bind="adres"></h1>
 			<img data-bind="image">

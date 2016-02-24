@@ -1,12 +1,17 @@
 body {
-	background-image: url(img/back.jpg);
-	background-attachment: fixed;
-	background-size: cover;
-	
+	margin: 0px;
+}
+
+body > header {
+	background: #F8B000;
+	height: 2em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 #searchForm {
-	text-align: center;
+	margin-top: 1em;
 }
 
 #SearchResults {

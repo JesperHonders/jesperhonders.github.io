@@ -2,8 +2,8 @@
 
 	 var app = {
         init: function() {
-			document.getElementById("searchButton").addEventListener('click', api.searchObject)
             routes.init();
+			utils.events();
             console.log('initialized')
         }
     };
@@ -43,6 +43,17 @@
             select.one(hash).classList.remove('none')
         }
     }
+	
+	var utils = {
+		events: function() {
+			document.getElementById("searchButton").addEventListener('click', api.searchObject);
+			document.getElementById("backButton").addEventListener('click', utils.backToResults);
+		},
+		backToResults: function() {
+			window.location.hash = "#results"
+		}
+		
+	}
 
 
     var api = {
@@ -53,25 +64,31 @@
 					window.location.hash = "#results"
                     var data = JSON.parse(resp);
                     console.table(data);
-                    console.table(data)
                     var objectArray = [];
 
                     for (var i = 0; i < data.Objects.length; i++) {
                         var object = {
                             place: data.Objects[i].Woonplaats,
                             adres: data.Objects[i].Adres,
+							foto: data.Objects[i].FotoLarge,
                             arooms: "Aantal kamers: " + data.Objects[i].AantalKamers,
                             since: "Aangeboden sinds: " + data.Objects[i].AangebodenSindsTekst,
-                            price: "$ " + data.Objects[i].Koopprijs
+                            price: "$ " + data.Objects[i].Koopprijs,
+							id: data.Objects[i].Id
                         },
 							directives = {
-                            link: {
-                                href: function() {
-                                    return "#results/" + this.Id;
-                                }
+								link: {
+									href: function(params) {
+										return "#results/" + this.id;
+									},
+								resultimage: {
+                                	src: function(params) {
+										return this.foto
+                                	}
+								}
                             }
                         }
-						
+						console.log(directives.image)
                         objectArray.push(object);
                     }
                     Transparency.render(document.getElementById('SearchResults'), objectArray, directives);
@@ -101,11 +118,10 @@
 						}
 					console.log(directives.link)
 					Transparency.render(document.getElementById('DetailResult'), Object, directives);
-				})
-			}
+				})}
         } // end of api object
-
 	
+
 	app.init()
 
 
