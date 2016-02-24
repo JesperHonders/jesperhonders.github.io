@@ -22,3 +22,7 @@ body {
 	margin: 1em;
 	font-family: sans-serif;
 }
+
+.none {
+	display: none !important;
+}

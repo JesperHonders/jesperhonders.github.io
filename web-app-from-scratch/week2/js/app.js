@@ -7,41 +7,6 @@
             console.log('initialized')
         }
     };
-    var select = {
-        one: function(selector) {
-            return document.querySelector(selector);
-        },
-        all: function(selector) {
-            return document.querySelectorAll(selector);
-        }
-    }
-
-    var routes = {
-        init: function(xmlhttp) {
-            routie({
-                'list': function() {
-                    api.listStations();
-                },
-                'home': function() {
-                    sections.toggle('#home')
-                },
-                ':id': function(stationid) {
-                    sections.toggle('#detail');
-                    api.detailStation(stationid);
-                }
-            })
-        }
-    };
-
-    var sections = {
-        toggle: function(hash) {
-            var content = select.all('.content')
-            for (var i = 0; i < content.length; i++) {
-                content[i].classList.add('none')
-            }
-            select.one(hash).classList.remove('none')
-        }
-    }
 
     var api = {
         listStations: function() {

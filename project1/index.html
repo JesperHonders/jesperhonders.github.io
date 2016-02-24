@@ -14,7 +14,7 @@
 		</form>
 		</header>
 	
-	<main id="SearchResults">
+	<main id="SearchResults" class="content none">
 		
 		<section class="result">
 			<h1 data-bind="adres"></h1>
@@ -24,14 +24,28 @@
 				<li data-bind="since"></li>
 				<li data-bind="price"></li>
 			</ul>
-			<a>Bekijk</a>
+			<a data-bind="link">Bekijk</a>
 		</section>
 		
+	</main>
+	
+	<main id="DetailResult" class="content none">
+		<section>
+			<h1 data-bind="adres"></h1>
+			<img data-bind="image">
+			<h3 data-bind="place"></h3>
+			<ul>
+				<li data-bind="arooms"></li>
+				<li data-bind="buildyear"></li>
+				<li data-bind="price"></li>
+			</ul>
+		</section>
 	</main>
 
 
 	<script src="static/microajax.js"></script>
 	<script src="static/transparency.min.js"></script>
+	<script src="static/routie.js"></script>
 	<script src="static/app.js"></script>
 </body>
 </html>
