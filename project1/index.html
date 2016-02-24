@@ -9,7 +9,7 @@
 <body>
 	
 	<header>
-		<form id="searchForm">
+		<form onsubmit="api.searchObject(); return false;" action="javascript:api.searchObject()" id="searchForm">
 			<span>Waar wilt u wonen? </span>
 			<input id="search"><input id="searchButton" type="button" value="Zoek">
 		</form>
