@@ -2,10 +2,9 @@
 
 	 var app = {
         init: function() {
-            routes.init();
-			utils.events();
+            routes.init(); // Initiate Routes
+			utils.events(); // Setup Event Listeners
             console.log('initialized');
-			console.log(utils.random());
         }
     };
 	
@@ -48,6 +47,7 @@
 	var utils = {
 		events: function() {
 			document.getElementById("searchButton").addEventListener('click', api.searchObject);
+			document.getElementById("newHouseButton").addEventListener('click', api.searchObject);
 			document.getElementById("backButton").addEventListener('click', utils.backToResults);
 		},
 		backToResults: function() {
@@ -68,36 +68,32 @@
 					window.location.hash = "#results"
                     var data = JSON.parse(resp);
                     console.table(data);
-                    var objectArray = [];
+					var house = data.Objects[utils.random()];
 
-                    for (var i = 0; i < data.Objects.length; i++) {
-                        var object = {
-                            place: data.Objects[i].Woonplaats,
-                            adres: data.Objects[i].Adres,
-							foto: data.Objects[i].FotoLarge,
-                            arooms: "Aantal kamers: " + data.Objects[i].AantalKamers,
-                            since: "Aangeboden sinds: " + data.Objects[i].AangebodenSindsTekst,
-                            price: "$ " + data.Objects[i].Koopprijs,
-							id: data.Objects[i].Id
+					var object = {
+                            place: house.Woonplaats,
+                            adres: house.Adres,
+							foto: house.FotoLarge,
+                            arooms: "Aantal kamers: " + house.AantalKamers,
+                            since: "Aangeboden sinds: " + house.AangebodenSindsTekst,
+                            price: "$ " + house.Koopprijs,
+							id: house.Id
                         },
 							directives = {
+								image: {
+									src: function(params) {
+										return this.foto;
+									}
+                            	},
 								link: {
 									href: function(params) {
-										return "#results/" + this.id;
-									},
-								resultimage: {
-                                	src: function(params) {
-										return this.foto
-                                	}
+										return "#results/"+this.id
+									}
 								}
-                            }
-                        }
-						console.log(directives.image)
-                        objectArray.push(object);
-                    }
-                    Transparency.render(document.getElementById('SearchResults'), objectArray, directives);
-                });
-            }, // end of searchObject function
+								}
+					console.log(object)
+					Transparency.render(document.getElementById('SearchResults'), object, directives);
+            })}, // end of searchObject function
 		
 		
 			detailObject: function(id) {

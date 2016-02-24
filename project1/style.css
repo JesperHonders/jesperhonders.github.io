@@ -1,5 +1,6 @@
 body {
 	margin: 0px;
+	font-family: sans-serif;
 }
 
 body > header {
@@ -21,11 +22,22 @@ body > header {
 }
 
 .result{
-	width: 20em;
+	width: max-content;
 	background: rgba(0,0,0,0.1);
 	padding: 1em;
 	margin: 1em;
+	text-align: center;
 	font-family: sans-serif;
+	animation: flyIn 1s;
+}
+
+@keyframes flyIn {
+	from {transform: scale(0); opacity: 0;;},
+	to {transform: scale(1); opacity: 1;}
+}
+
+.result > img {
+	max-width: 100%
 }
 
 .none {
