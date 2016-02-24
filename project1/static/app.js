@@ -4,7 +4,8 @@
         init: function() {
             routes.init();
 			utils.events();
-            console.log('initialized')
+            console.log('initialized');
+			console.log(utils.random());
         }
     };
 	
@@ -51,6 +52,9 @@
 		},
 		backToResults: function() {
 			window.location.hash = "#results"
+		},
+		random: function() {
+			return Math.floor(Math.random() * (24 - 0) + 0);
 		}
 		
 	}
