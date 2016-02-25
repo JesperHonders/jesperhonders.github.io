@@ -1,7 +1,5 @@
-var routeHandler = (function() {
-
-// Credits to Math96
-	var select = {
+    // Credits to Math96
+    var select = {
         one: function(selector) {
             return document.querySelector(selector);
         },
@@ -13,18 +11,20 @@ var routeHandler = (function() {
     var routes = {
         init: function(xmlhttp) {
             routie({
-                'results': function() {
-					sections.toggle('#SearchResults')
-                },
+                'results': function() {},
                 'results/:id': function(id) {
-					api.detailObject(id);
+                    api.detailObject(id);
                     sections.toggle('#DetailResult');
-                }
-            })
+                },
+				'seenHouses': function() {
+					sections.toggle('#SeenHouses')
+					seen.display()
+				}})
+            
         }
     };
 
-	// Credits to Math96
+    // Credits to Math96
     var sections = {
         toggle: function(hash) {
             var content = select.all('.content')
@@ -34,5 +34,3 @@ var routeHandler = (function() {
             select.one(hash).classList.remove('none')
         }
     }
-	
-}())

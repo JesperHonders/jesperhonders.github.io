@@ -12,6 +12,7 @@
 	<main>
 		<section id="homePage">
 			<form id="searchForm" class="searchForm">
+							<a href="#seenHouses">Historie</a>
 				<input type="text" placeholder="Plaats, buurt, adres etc."  id="searchTerm">
 				<select name="minPrice">
 					<option selected="selected" id="minPrice" value="0">Van: &euro;0</option>
@@ -36,7 +37,7 @@
 		</section>
 	</main>
 	
-	<main id="notFound" class="none">
+	<main id="notFound" class="content none">
 		<h1>Uw zoektermen hebben niks opgeleverd</h1>
 	</main>
 	
@@ -74,12 +75,25 @@
 		</section>
 	</main>
 	
+	<main id="SeenHouses" class="content none">
+		<section>
+			<a data-bind="link" href="#Yo">
+		<h1 data-bind="adres"></h1>
+		<img data-bind="image" src="">
+			</a>
+		</section>
+	</main>
+	
 
 
 	<script src="static/microajax.js"></script>
 	<script src="static/transparency.min.js"></script>
 	<script src="static/routie.js"></script>
-	<script src="static/modules/routes.js"></script>
+	<script src="static/modules/init.js"></script>
+	<script src="static/modules/templating.js"></script>
+	<script src="static/modules/utils.js"></script>
+	<script src="static/modules/api.js"></script>
+	<script src="static/modules/localStorage.js"></script>
 	<script src="static/app.js"></script>
 </body>
 </html>
