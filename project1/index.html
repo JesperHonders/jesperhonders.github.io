@@ -8,15 +8,13 @@
 
 <body>
 	
-	<header>
-		</header>
 	
 	<main>
 		<section id="homePage">
 			<form id="searchForm" class="searchForm">
 				<input type="text" placeholder="Plaats, buurt, adres etc."  id="searchTerm">
 				<select name="minPrice">
-					<option selected="selected" id="minPrice" value="0">&euro;0</option>
+					<option selected="selected" id="minPrice" value="0">Van: &euro;0</option>
 					<option value="50000">&euro;50.000</option>
 					<option value="100000">&euro;100.000</option>
 					<option value="200000">&euro;200.000</option>
@@ -31,7 +29,7 @@
 					<option value="200000">&euro;200.000</option>
 					<option value="500000">&euro;500.000</option>
 					<option value="1000000">&euro;1.000.000</option>
-					<option selected="selected" value="5000000">&euro;5.000.000</option>
+					<option selected="selected" value="5000000">Tot: &euro; 5.000.000</option>
 				</select>
 				<input id="searchButton" type="button" value="Zoek">
 			</form>
@@ -61,7 +59,6 @@
 	
 	<main id="DetailResult" class="content none">
 		<section>
-			
 			<h1 data-bind="adres"></h1>
 			<img data-bind="image" alt="zoeken">
 			<h3 data-bind="place"></h3>
@@ -83,6 +80,6 @@
 	<script src="static/transparency.min.js"></script>
 	<script src="static/routie.js"></script>
 	<script src="static/modules/routes.js"></script>
-	<script src="static/app-min.js"></script>
+	<script src="static/app.js"></script>
 </body>
 </html>

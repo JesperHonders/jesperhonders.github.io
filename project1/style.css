@@ -73,6 +73,10 @@ input[type="button"] {
 	        animation: flyIn 1s;
 }
 
+.result a{
+	display: block;
+}
+
 @-webkit-keyframes flyIn {
 	from {-webkit-transform: scale(0);transform: scale(0); opacity: 0; filter: alpha(opacity=0);;},
 	to {-webkit-transform: scale(1);transform: scale(1); opacity: 1; filter: alpha(opacity=100);}
