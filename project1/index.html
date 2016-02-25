@@ -9,20 +9,41 @@
 <body>
 	
 	<header>
-		<form onsubmit="api.searchObject(); return false;" action="javascript:api.searchObject()" id="searchForm">
-			<span>Waar wilt u wonen? </span>
-			<input id="search"><input id="searchButton" type="button" value="Zoek">
-		</form>
 		</header>
 	
+	<main>
+		<section id="homePage">
+			<form id="searchForm" class="searchForm">
+				<input type="text" placeholder="Plaats, buurt, adres etc."  id="searchTerm">
+				<select name="minPrice">
+					<option selected="selected" id="minPrice" value="0">&euro;0</option>
+					<option value="50000">&euro;50.000</option>
+					<option value="100000">&euro;100.000</option>
+					<option value="200000">&euro;200.000</option>
+					<option value="500000">&euro;500.000</option>
+					<option value="1000000">&euro;1.000.000</option>
+					<option value="5000000">&euro;5.000.000</option>
+				</select>
+				<select name="maxPrice">
+					<option value="0">&euro;0</option>
+					<option value="50000">&euro;50.000</option>
+					<option value="100000">&euro;100.000</option>
+					<option value="200000">&euro;200.000</option>
+					<option value="500000">&euro;500.000</option>
+					<option value="1000000">&euro;1.000.000</option>
+					<option selected="selected" value="5000000">&euro;5.000.000</option>
+				</select>
+				<input id="searchButton" type="button" value="Zoek">
+			</form>
+		</section>
+	</main>
 	<main id="SearchResults" class="content none">
-		
 		<section class="result">
 			<img data-bind="image">
 			<h1 data-bind="adres"></h1>
 			<strong data-bind="place"></strong>
 			<a data-bind="link">Bekijk</a>
-			<button id="newHouseButton">Nieuw Huis</button>
+			<button id="newHouseButton">Zoek nieuw huis</button>
 		</section>
 		
 		
@@ -30,7 +51,6 @@
 	</main>
 	
 	<main id="DetailResult" class="content none">
-		<button id="backButton">Back</button>
 		<section>
 			<h1 data-bind="adres"></h1>
 			<img data-bind="image">
@@ -40,6 +60,7 @@
 				<li data-bind="buildyear"></li>
 				<li data-bind="price"></li>
 			</ul>
+			<button id="backButton">Terug</button>
 		</section>
 	</main>
 	

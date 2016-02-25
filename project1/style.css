@@ -4,7 +4,7 @@ body {
 }
 
 body > header {
-	background: #F8B000;
+	background: #333;
 	height: 2em;
 	display: flex;
 	justify-content: center;
@@ -12,7 +12,19 @@ body > header {
 }
 
 #searchForm {
-	margin-top: 1em;
+	padding: 1em;
+	text-align: center;
+	background: #F8B000;
+}
+
+#searchForm input,select {
+	padding-left: 11.2px;
+    border: 1px solid #fff;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    height: 44px;
+    color: #3888C5;
+	margin-bottom: 1em;
 }
 
 #SearchResults {

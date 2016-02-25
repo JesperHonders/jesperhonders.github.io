@@ -54,21 +54,28 @@
 			window.location.hash = "#results"
 		},
 		random: function() {
-			return Math.floor(Math.random() * (24 - 0) + 0);
+			return Math.floor(Math.random() * (14 - 0) + 0);
 		}
 		
 	}
 
 
     var api = {
+		
+		key: "e2d60e885b8742d4b0648300e3703bd7",
 
             searchObject: function() {
-                var searchTerm = document.getElementById("search").value;
-                microAjax("http://funda.kyrandia.nl/feeds/Aanbod.svc/json/e2d60e885b8742d4b0648300e3703bd7/?type=koop&zo=/" + searchTerm + "&page=1&pagesize=25", function(resp) {
+                var searchTerm = document.getElementById("searchTerm").value;
+				var minPriceSelect = document.forms['searchForm'].elements['minPrice'];
+				var minPriceValue = minPriceSelect.value;
+				var maxPriceSelect = document.forms['searchForm'].elements['maxPrice'];
+				var maxpriceValue = maxPriceSelect.value;
+                microAjax("http://funda.kyrandia.nl/feeds/Aanbod.svc/json/"+api.key+"/?type=koop&zo=/" + searchTerm + "/"+minPriceValue+"-"+maxpriceValue+"/", function(resp) {
 					window.location.hash = "#results"
                     var data = JSON.parse(resp);
-                    console.table(data);
-					var house = data.Objects[utils.random()];
+                    console.log(data);
+					var amountFound = data.Objects.length;
+					var house = data.Objects[Math.floor(Math.random() * (amountFound - 0) + 0)];
 
 					var object = {
                             place: house.Woonplaats,
@@ -90,9 +97,14 @@
 										return "#results/"+this.id
 									}
 								}
-								}
-					console.log(object)
-					Transparency.render(document.getElementById('SearchResults'), object, directives);
+							}
+					
+					if (typeof object === 'undefined'){
+						alert("Niks gevonden")
+					} else{
+						console.log(object)
+						Transparency.render(document.getElementById('SearchResults'), object, directives);
+					}
             })}, // end of searchObject function
 		
 		
