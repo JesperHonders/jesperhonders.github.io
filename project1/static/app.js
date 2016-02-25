@@ -23,7 +23,6 @@
         init: function(xmlhttp) {
             routie({
                 'results': function() {
-					sections.toggle('#SearchResults')
                 },
                 'results/:id': function(id) {
 					api.detailObject(id);
@@ -45,19 +44,14 @@
     }
 	
 	var utils = {
+		spinner: document.getElementById('spinner'),
+		
 		events: function() {
 			document.getElementById("searchButton").addEventListener('click', api.searchObject);
 			document.getElementById("newHouseButton").addEventListener('click', api.searchObject);
-			document.getElementById("backButton").addEventListener('click', utils.backToResults);
-		},
-		backToResults: function() {
-			window.location.hash = "#results"
-		},
-		random: function() {
-			return Math.floor(Math.random() * (14 - 0) + 0);
 		}
-		
 	}
+	
 
 
     var api = {
@@ -70,14 +64,24 @@
 				var minPriceValue = minPriceSelect.value;
 				var maxPriceSelect = document.forms['searchForm'].elements['maxPrice'];
 				var maxpriceValue = maxPriceSelect.value;
+				document.getElementById('spinner').classList.remove('none')
                 microAjax("http://funda.kyrandia.nl/feeds/Aanbod.svc/json/"+api.key+"/?type=koop&zo=/" + searchTerm + "/"+minPriceValue+"-"+maxpriceValue+"/", function(resp) {
-					window.location.hash = "#results"
+					document.getElementById('spinner').classList.add('none')
+					document.getElementById('notFound').classList.add('none')
+					window.location.hash = "#results";
                     var data = JSON.parse(resp);
-                    console.log(data);
+                    console.log(data.Objects);
 					var amountFound = data.Objects.length;
 					var house = data.Objects[Math.floor(Math.random() * (amountFound - 0) + 0)];
 
-					var object = {
+					
+					
+					if (typeof house === 'undefined'){
+						document.getElementById('notFound').classList.remove('none')
+						document.getElementById('SearchResults').classList.add('none')
+					} else{
+						sections.toggle('#SearchResults')			
+						var object = {
                             place: house.Woonplaats,
                             adres: house.Adres,
 							foto: house.FotoLarge,
@@ -98,12 +102,8 @@
 									}
 								}
 							}
-					
-					if (typeof object === 'undefined'){
-						alert("Niks gevonden")
-					} else{
-						console.log(object)
 						Transparency.render(document.getElementById('SearchResults'), object, directives);
+
 					}
             })}, // end of searchObject function
 		
@@ -116,21 +116,27 @@
 					
 					var Object = {
 						adres: data.Adres,
-						arooms: data.AantalKamers,
-						buildyear: data.Bouwjaar,
-						price: data.Koopprijs,
-						place: data.Plaats
+						arooms: "Aantal Kamers: "+data.AantalKamers,
+						buildyear: "Bouwjaar: "+data.Bouwjaar,
+						price: "Kost de Koper: "+data.Koopprijs,
+						place: data.Plaats,
+						description: data.VolledigeOmschrijving,
 					},
 						directives = {
 							image: {
                                 src: function(params) {
                                     return data.HoofdFoto;
                                 }
-                            }
+                            },
+							linkFunda: {
+								href: function(params) {
+									return data.URL
+								}
+							}
 						}
 					console.log(directives.link)
 					Transparency.render(document.getElementById('DetailResult'), Object, directives);
-				})}
+				})},
         } // end of api object
 	
 

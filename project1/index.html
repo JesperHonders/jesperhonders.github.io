@@ -37,6 +37,15 @@
 			</form>
 		</section>
 	</main>
+	
+	<main id="notFound" class="none">
+		<h1>Uw zoektermen hebben niks opgeleverd</h1>
+	</main>
+	
+	<section id="spinner" class="none">
+		<img src="img/spinner.gif">
+	</section>
+	
 	<main id="SearchResults" class="content none">
 		<section class="result">
 			<img data-bind="image">
@@ -52,15 +61,19 @@
 	
 	<main id="DetailResult" class="content none">
 		<section>
+			
 			<h1 data-bind="adres"></h1>
-			<img data-bind="image">
+			<img data-bind="image" alt="zoeken">
 			<h3 data-bind="place"></h3>
 			<ul>
 				<li data-bind="arooms"></li>
 				<li data-bind="buildyear"></li>
 				<li data-bind="price"></li>
 			</ul>
-			<button id="backButton">Terug</button>
+			<p data-bind="description"></p>
+	
+			
+			<a data-bind="linkFunda">Bekijk op Funda.nl</a>
 		</section>
 	</main>
 	
@@ -70,6 +83,6 @@
 	<script src="static/transparency.min.js"></script>
 	<script src="static/routie.js"></script>
 	<script src="static/modules/routes.js"></script>
-	<script src="static/app.js"></script>
+	<script src="static/app-min.js"></script>
 </body>
 </html>
