@@ -1,73 +1,6 @@
-(function() {
-
-    var app = {
-        init: function() {
-            routes.init(); // Initiate Routes
-            utils.events(); // Setup Event Listeners
-            console.log('initialized');
-			var StorageValues = utils.listLocalStorage();
-			console.dir(StorageValues[1]);
-        }
-    };
-	
-	
-
-
-    // Credits to Math96
-    var select = {
-        one: function(selector) {
-            return document.querySelector(selector);
-        },
-        all: function(selector) {
-            return document.querySelectorAll(selector);
-        }
-    }
-
-    var routes = {
-        init: function(xmlhttp) {
-            routie({
-                'results': function() {},
-                'results/:id': function(id) {
-                    api.detailObject(id);
-                    sections.toggle('#DetailResult');
-                }
-            })
-        }
-    };
-
-    // Credits to Math96
-    var sections = {
-        toggle: function(hash) {
-            var content = select.all('.content')
-            for (var i = 0; i < content.length; i++) {
-                content[i].classList.add('none')
-            }
-            select.one(hash).classList.remove('none')
-        }
-    }
-
-    var utils = {
-        spinner: document.getElementById('spinner'),
-
-        events: function() {
-            document.getElementById("searchButton").addEventListener('click', api.searchObject);
-            document.getElementById("newHouseButton").addEventListener('click', api.searchObject);
-        },
-
-        listLocalStorage: function() {
-            var items = [],
-                keys = Object.keys(localStorage),
-                i = keys.length;
-            while (i--) {
-                items.push(localStorage.getItem(keys[i]));
-            }
-            return items;
-        }
-    }
-
-
-
-    var api = {
+(function(){
+	define(['routie', 'microAjax'], function(){
+	var api = {
 
             key: "e2d60e885b8742d4b0648300e3703bd7",
 
@@ -157,11 +90,13 @@
                     var data = JSON.parse(resp);
                     localStorage.setItem(id, data);
                 })
-            }
+            },
+		
+			scream: function() {
+				alert("AAAAAAAAAAAAAAAAAAAAA");
+			}
         } // end of api object
-
-
-    app.init()
-
-
-}());
+	
+	return api;
+})	
+}())

@@ -75,6 +75,7 @@ input[type="button"] {
 
 .result a{
 	display: block;
+	margin: 1em;
 }
 
 @-webkit-keyframes flyIn {
