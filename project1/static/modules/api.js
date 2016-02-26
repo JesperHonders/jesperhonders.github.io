@@ -57,11 +57,25 @@
                     var data = JSON.parse(resp);
 					var saved = JSON.parse(localStorage.getItem('houses'));
 					saved = saved || [];
-
+					
+					
+					
+					console.log(saved)
+					console.log(data);
+					for(var i = 0; i < saved.length; i++){
+						var test = saved[i].Id === data.Id
+						console.log(test)
+					}
 					saved.push(data);
-					console.log(saved);
-					localStorage.setItem('houses', JSON.stringify(saved));
-
+					
+					if (test){
+						console.log("bestaat al")
+					} else {
+						localStorage.setItem('houses', JSON.stringify(saved));
+						console.log("opgeslagen")
+					}
+					
+					
 
                     var Object = {
                             adres: data.Adres,
