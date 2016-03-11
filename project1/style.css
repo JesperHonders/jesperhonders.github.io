@@ -18,6 +18,24 @@ body {
     color: #3888C5;
 	margin: 0.5em 0em;
 	width: 100%;
+}		
+
+#searchForm a:focus {
+	border: 0.5px solid black;	
+}		
+
+a:focus {
+	border: 0.5px solid black;
+}
+
+button:focus
+
+select:focus {
+	outline-color: #333;
+}
+
+input:focus {
+	outline-color: #333;
 }
 
 input[type="button"] {
