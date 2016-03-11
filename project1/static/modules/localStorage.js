@@ -17,7 +17,10 @@ var seen = {
                                 image: {
                                     src: function(params) {
                                         return this.foto;
-                                    }
+                                    },
+									alt: function(params) {
+										return 'Foto van ' + this.adres
+									}
                                 },
                                 link: {
                                     href: function(params) {

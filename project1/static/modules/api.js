@@ -38,7 +38,10 @@
                                 image: {
                                     src: function(params) {
                                         return this.foto;
-                                    }
+                                    },
+									alt: function(params) {
+										return "Foto van "+this.adres;
+									}
                                 },
                                 link: {
                                     href: function(params) {
@@ -89,7 +92,11 @@
                             image: {
                                 src: function(params) {
                                     return data.HoofdFoto;
-                                }
+                                },
+								alt: function(params) {
+									return "Foto van "+this.adres;
+								}
+								
                             },
                             linkFunda: {
                                 href: function(params) {
