@@ -5,20 +5,20 @@
 Bij het uitzetten van de cookies stopt de detail pagina met werken. Dit komt omdat er cookies nodig zijn om de ajax call te maken met de server.
 Dit is te verhelpen als de app op een andere manier wordt opgezet, zodat deze geen json returned maar HTML
 
-![cookies](/readme/nocookies.jpg)
+![cookies](readme/nocookies.jpg)
 
 ## Kleuren
 
 De website is te gebruiken zonder kleuren, Eerst was er spraken van slecht leesbare tekst in het zoekpaneel maar deze is nu verholpen door wat CSS
 
-![cookies](/readme/color.jpg)
+![cookies](readme/color.jpg)
 
 ## CSS
 
 De website is te gebruiken zonder CSS alleen is deze niet zo heel mooi omdat er een vrij grote loading gif standaard instaat en deze wordt doormiddel van CSS gehide.
 Dit is op te lossen door de gif via javascript te injecteren in de html. Dit is express niet gedaan vanwege performance issues.
 
-![cookies](/readme/css.jpg)
+![cookies](readme/css.jpg)
 
 ## Javascript
 
