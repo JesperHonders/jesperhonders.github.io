@@ -51,3 +51,14 @@ Deze website werkt prima met adblockers enabled.
 Loading Gif fixen zodat deze niet geregeld wordt in de css.
 
 Fixen zodat er geen cookies nodig zijn om de ajax call te returnen.
+
+
+# Fixes
+
+
+Made it so that you don't have to have enabled cookies or localstorage to benefit from the core functionality, wich is finding random houses based on your search query.
+
+
+When you don't have cookies enabled the detail page will link to funda's original detail page (Dirty work around must be a better way but couldn't find it).
+
+Localstorage History panel only enables if you have localstorage on your system, otherwise it is disabled and won't show.
