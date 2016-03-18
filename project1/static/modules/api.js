@@ -32,7 +32,8 @@
                                 arooms: "Aantal kamers: " + house.AantalKamers,
                                 since: "Aangeboden sinds: " + house.AangebodenSindsTekst,
                                 price: "$ " + house.Koopprijs,
-                                id: house.Id
+                                id: house.Id,
+								url: house.URL
                             },
                             directives = {
                                 image: {
@@ -45,7 +46,15 @@
                                 },
                                 link: {
                                     href: function(params) {
-                                        return "#results/" + this.id
+										var cookieEnabled=(navigator.cookieEnabled)? true : false;
+										console.log(cookieEnabled);
+										if (cookieEnabled === true){
+											return "#results/" + this.id
+										}
+										else{
+											return this.url
+										}
+                                        
                                     }
                                 }
                             }
