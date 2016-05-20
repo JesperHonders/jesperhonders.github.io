@@ -18,6 +18,12 @@ body {
             flex-wrap: wrap;
     background: #D7DBD7;
     font-family: sans-serif;
+    background: hsl(80, 90%, 20%);
+    background-image:
+    linear-gradient(90deg, #fa3 11px, transparent 0),
+    linear-gradient(90deg, #ccc 23px, transparent 0),
+    linear-gradient(90deg, #9af 41px, transparent 0);
+    background-size: 41px 100%, 61px 100%, 83px 100%;
 }
 
 
@@ -63,7 +69,7 @@ body > header > nav > ul {
     -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
             flex-wrap: wrap;
-    
+
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
@@ -76,6 +82,14 @@ body > header > nav > ul > li{
     list-style: none;
 }
 
+@keyframes lightUp {
+  to {color: white;}
+}
+
+@keyframes joe{
+  to {transform: scale(0.8)}
+}
+
 body > header > nav > ul > li > a{
     color: #777777;
     text-decoration: none;
@@ -83,6 +97,41 @@ body > header > nav > ul > li > a{
     padding: 1em;
     display: block;
     text-align: center;
+    cursor:url(http://www.javascriptkit.com/dhtmltutors/cursor-hand.gif), auto;
+}
+
+ul > li > a:hover {
+  animation: lightUp 1s forwards;
+}
+
+ul > li > a:focus {
+  animation: joe 1s forwards;
+}
+
+button {
+    position: relative;
+    /* [rest of styling] */
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: -10px; right: -10px;
+    bottom: -10px; left: -10px;
+}
+
+input[type="checkbox"]:active{
+    box-shadow: 0 0 .1em .1em #F00;
+}
+
+input[type="checkbox"]{
+
+}
+
+input[type="checkbox"]:checked{
+  width: 20px;
+  height: 20px;
+  color: white;
 }
 
 body header nav ul li svg{
@@ -204,6 +253,20 @@ main > article > header > h1 > span {
             order: 1;
 }
 
+@keyframes loader {
+    to { background-position: -800px 0; }
+}
+
+.loader {
+    width: 100px; height: 100px;
+    background: url(images/loader.png) 0 0;
+    animation: loader 1s infinite steps(8);
+    /* Hide text */
+    text-indent: 200%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 #photo-albums > figure svg {
     width: 1em;
     height: 1em;
@@ -237,14 +300,14 @@ body ul {
     body > header {
         width: 100%;
     }
-    
+
     body > header > figure > img {
         border-radius: 50%;
         display: block;
         margin: 0 auto;
         width: 5em;
     }
-    
+
     body > header > nav > ul {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -254,17 +317,17 @@ body ul {
         margin: 0 auto;
         display: block;
     }
-    
+
     body > main {
         width: 100%;
         padding: 0;
     }
-    
+
     main > article {
         width: auto;
     }
-    
-    
+
+
     body > footer {
     -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
@@ -273,10 +336,10 @@ body ul {
 }
 
 @media screen and (max-width: 550px) {
-    
+
     body > footer {
         display: block;
         text-align: center;
     }
-    
+
 }

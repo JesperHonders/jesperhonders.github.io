@@ -1,4 +1,16 @@
-var seen = {
+function lsTest(){
+    var test = 'test';
+    try {
+        localStorage.setItem(test, test);
+        localStorage.removeItem(test);
+        return true;
+    } catch(e) {
+        return false;
+    }
+}
+
+if(lsTest() === true){
+   var seen = {
 	display: function(){
 		var data = localStorage.getItem('houses');
 		var house = JSON.parse(data);
@@ -17,7 +29,10 @@ var seen = {
                                 image: {
                                     src: function(params) {
                                         return this.foto;
-                                    }
+                                    },
+									alt: function(params) {
+										return 'Foto van ' + this.adres
+									}
                                 },
                                 link: {
                                     href: function(params) {
@@ -33,3 +48,10 @@ var seen = {
 		
 	}
 }
+   console.log("Localstorage works, history panel enabled")
+   
+}else{
+	document.getElementById('historieButton').style.display = "none";
+	console.log("Localstorage doesn't work, History panel disabled")
+}
+
